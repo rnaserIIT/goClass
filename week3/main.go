@@ -16,7 +16,7 @@ func main() {
 	fmt.Scanln(&operator)
 	switch operator {
 	case "1":
-		fmt.Println(add(num1, num2))
+		fmt.Println(MyMath.add(num1, num2))
 
 	case "2":
 		fmt.Println(sub(num1, num2))
