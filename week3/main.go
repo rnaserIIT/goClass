@@ -19,11 +19,11 @@ func main() {
 		fmt.Println(MyMath.add(num1, num2))
 
 	case "2":
-		fmt.Println(sub(num1, num2))
+		fmt.Println(MyMath.sub(num1, num2))
 	case "3":
-		fmt.Println(mult(num1, num2))
+		fmt.Println(MyMath.mult(num1, num2))
 	case "4":
-		fmt.Println(div(num1, num2))
+		fmt.Println(MyMath.div(num1, num2))
 	default:
 		fmt.Println("error please run the program again")
 
@@ -31,6 +31,7 @@ func main() {
 
 }
 
+/*
 func add(a, b float64) float64 {
 	return (a + b)
 
@@ -50,3 +51,5 @@ func div(a, b float64) float64 {
 	return (a / b)
 
 }
+
+*/
