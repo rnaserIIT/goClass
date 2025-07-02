@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"HW/MyMath"
+	"fmt"
+)
 
 func main() {
 	var num1 float64
@@ -16,14 +19,14 @@ func main() {
 	fmt.Scanln(&operator)
 	switch operator {
 	case "1":
-		fmt.Println(MyMath.add(num1, num2))
+		fmt.Println(MyMath.Add(num1, num2))
 
 	case "2":
-		fmt.Println(MyMath.sub(num1, num2))
+		fmt.Println(MyMath.Sub(num1, num2))
 	case "3":
-		fmt.Println(MyMath.mult(num1, num2))
+		fmt.Println(MyMath.Mult(num1, num2))
 	case "4":
-		fmt.Println(MyMath.div(num1, num2))
+		fmt.Println(MyMath.Div(num1, num2))
 	default:
 		fmt.Println("error please run the program again")
 
