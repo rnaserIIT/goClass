@@ -27,6 +27,6 @@ func main() {
 	boss.position = "head of IT"
 	boss.MonthlySalary = 16000
 	boss.PrintInfo()
-	println("this Employee's yearly salary is ", boss.CalcYearlyCost())
+	fmt.Println("this Employee's yearly salary is ", boss.CalcYearlyCost())
 
 }
