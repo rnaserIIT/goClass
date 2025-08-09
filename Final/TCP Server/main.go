@@ -2,23 +2,40 @@ package main
 
 import (
 	"bufio"
+	"crypto/rand"
+	"crypto/tls"
 	"fmt"
-
 	"log"
 	"net"
 )
 
 func main() {
-	connection, err := net.Listen("tcp", ":8080")
+	// Load TLS certificate and key
+	cert, err := tls.LoadX509KeyPair("certs/server.pem", "certs/server.key")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("server: loadkeys: ", err)
 	}
-	defer connection.Close()
+
+	// Set up TLS config
+	config := &tls.Config{
+		Certificates: []tls.Certificate{cert},
+		Rand:         rand.Reader,
+	}
+
+	// Start TLS listener
+	listener, err := tls.Listen("tcp", ":8000", config)
+	if err != nil {
+		log.Fatal("server: listen: ", err)
+	}
+	defer listener.Close()
+
+	log.Println("server: listening on :8000")
 
 	for {
-		conn, err := connection.Accept()
+		conn, err := listener.Accept()
 		if err != nil {
-			log.Fatal(err)
+			log.Println("server: accept error:", err)
+			continue
 		}
 		go handleConnection(conn)
 	}
@@ -28,7 +45,6 @@ func handleConnection(c net.Conn) {
 	defer c.Close()
 
 	scanner := bufio.NewScanner(c)
-
 	for scanner.Scan() {
 		text := scanner.Text()
 		fmt.Println("Received:", text)
